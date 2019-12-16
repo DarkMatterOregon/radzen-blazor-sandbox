@@ -1,0 +1,86 @@
+﻿@page "/EmailTemplatesEditable"
+@using Microsoft.EntityFrameworkCore
+@using RadzenBlazorSandbox.Data
+
+@inject ApplicationDbContext dbContext
+
+<h1>Email Templates</h1>
+
+@if (list == null)
+{
+    <p><em>Loading...</em></p>
+}
+else if (list.Count() == 0)
+{
+    <p><em>No Items...</em></p>
+
+}
+else
+{
+
+    <RadzenDataList AllowPaging="true" Data="@list" TItem="EmailTemplate">
+        <Template Context="item">
+            @if (editId != item.ID)
+            {
+                <RadzenCard>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div>Subject:</div>
+                            <b>@item.Subject</b>
+                            <div style="margin-top:20px">Body:</div>
+                            <b>@item.Body</b>
+                            <br />
+                        </div>
+                    </div>
+                    <RadzenButton Click="@((args) => editId=item.ID)" Text="Edit" Style="width:100px;" ButtonStyle="ButtonStyle.Info" />
+                </RadzenCard>
+
+            }
+            else
+            {
+                <RadzenCard>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div>Subject:</div>
+                            <RadzenTextBox @bind-Value="item.Subject" Style="width:600px;" />
+                            <div style="margin-top:20px">Body:</div>
+                            <RadzenTextArea @bind-Value="item.Body" Style="width:600px;" />
+                            <br />
+                        </div>
+                    </div>
+                    <span>
+                        <RadzenButton Click="@((args) => Save(args,item))" Text="Save" Style="width:100px;" />
+                        <RadzenButton Click="@((args) => editId=-1)" Text="Cancel" ButtonStyle="ButtonStyle.Secondary" Style="width:120px;margin-left:20px" />
+                    </span>
+                </RadzenCard>
+
+            }
+        </Template>
+    </RadzenDataList>
+}
+
+@code {
+    IEnumerable<EmailTemplate> list;
+    int editId = -1;
+
+    protected override async Task OnInitializedAsync()
+    {
+        list = await Task.FromResult((from item in dbContext.EmailTemplates select item));
+    }
+
+    void Save(MouseEventArgs args, EmailTemplate item)
+    {
+        var row = dbContext.EmailTemplates.Find(item.ID);
+        if (row != null)
+        {
+
+            // this is a good place to use automapper
+
+            row.Subject = item.Subject;
+            row.Body = item.Body;
+
+            dbContext.SaveChanges();
+            editId = -1;
+        }
+    }
+}

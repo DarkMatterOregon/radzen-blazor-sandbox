@@ -12,5 +12,7 @@ namespace RadzenBlazorSandbox.Data
             : base(options)
         {
         }
+
+        public DbSet<EmailTemplate> EmailTemplates { get; set; }
     }
 }
