@@ -14,5 +14,8 @@ namespace RadzenBlazorSandbox.Data
         }
 
         public DbSet<EmailTemplate> EmailTemplates { get; set; }
+        public DbSet<Class> Classes { get; set; }
+        public DbSet<Roster> Rosters { get; set; }
+        public DbSet<Student> Students { get; set; }
     }
 }

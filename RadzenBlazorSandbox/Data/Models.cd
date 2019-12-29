@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="RadzenBlazorSandbox.Data.Roster">
+    <Position X="3" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Data\Roster.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RadzenBlazorSandbox.Data.Student">
+    <Position X="5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\Student.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RadzenBlazorSandbox.Data.Class">
+    <Position X="1" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\Class.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RadzenBlazorSandbox.Data.ApplicationDbContext" Collapsed="true">
+    <Position X="2" Y="0.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAkAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>Data\ApplicationDbContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
