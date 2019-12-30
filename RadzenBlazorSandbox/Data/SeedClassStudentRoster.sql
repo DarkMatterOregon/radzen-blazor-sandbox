@@ -1,0 +1,5 @@
+﻿insert into Classes (Name) values ('First Class')
+insert into Students (Name) values ('Adam')
+insert into Students (Name) values ('Eve')
+insert into Rosters (ClassId,StudentId) values (1,1)
+insert into Rosters (ClassId,StudentId) values (1,2)
