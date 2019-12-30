@@ -1,0 +1,46 @@
+﻿@page "/ClassRoster"
+@using Microsoft.EntityFrameworkCore
+@using RadzenBlazorSandbox.Data
+
+@inject ApplicationDbContext dbContext
+
+<h1>Class Roster</h1>
+
+@if (students == null)
+{
+    <p><em>Loading...</em></p>
+}
+else if (students.Count() == 0)
+{
+    <p><em>No Items...</em></p>
+}
+else
+{
+    <RadzenGrid AllowFiltering="true" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive" AllowPaging="true" PageSize="4" AllowSorting="true" Data="@students" TItem="Student" ColumnWidth="200px">
+        <Columns>
+            <RadzenGridColumn TItem="Student" Property="Id" Title="Student ID" />
+            <RadzenGridColumn TItem="Student" Property="Name" Title="Name" />
+        </Columns>
+    </RadzenGrid>
+}
+
+@code {
+    Class _class;
+    IEnumerable<Student> students;
+   
+
+    protected override async Task OnInitializedAsync()
+    {
+        _class = await Task.FromResult((dbContext.Classes.FirstOrDefault()));
+
+        var result = from student in dbContext.Students
+            join roster in dbContext.Rosters
+                on student.Id equals roster.StudentId
+            where roster.ClassId == _class.Id
+            select student;
+
+        students = await Task.FromResult((result));
+    }
+
+  
+}
